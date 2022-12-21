@@ -41,8 +41,11 @@ class IPRule(IntEnum):
 class IPFlag(IntEnum):
     """ Internet Protocol bit flags. """
     _RESERVED = 0b100
+    """ Reserved (unused for now) """
     DONT_FRAG = 0b010
-    MORE_FRAG = 0b001
+    """ Do not fragment. """
+    MORE_FRAGS = 0b001
+    """ More fragments. """
 
 
 class IPVersion(IntEnum):

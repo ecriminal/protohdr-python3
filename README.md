@@ -2,7 +2,7 @@
 
  A lightweight library to write network protocol headers for  raw socket development.
 
- Yes, I know that "Python bad", "Python slow". This library is meant to be used by lazy developers and developers who just got into low-level networking and want to understand the concept of crafting protocol headers without the use of `struct.pack` that may be confusing for rookies.
+ Yes, I know that "Python bad", "Python slow". This library is meant to be used by lazy developers and developers who just got into low-level networking and want to understand the concept of crafting protocol headers, without the use of `struct.pack` as it may be confusing for rookies.
 
 ## Requirements
 
