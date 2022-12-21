@@ -1,0 +1,34 @@
+[project]
+name = "protohdr"
+description = "Collection of network protocol header wrappers for raw socket development"
+authors = [
+    {name = "ecriminal"}
+]
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["internet", "protocol", "header", "raw socket", "tcp", "udp", "icmp"]
+license = {text = "GNU GENERAL PUBLIC LICENSE v3 (GPLv3)"}
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: Unix",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+]
+
+[project.urls]
+Homepage =  "https://github.com/ecriminal/protohdr-python3"
+Repository = "https://github.com/ecriminal/protohdr-python3"
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.setuptools.dynamic]
+version = {attr = "protohdr.__version__"}
