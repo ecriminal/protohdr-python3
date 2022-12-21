@@ -25,12 +25,12 @@ if __name__ == "__main__":
         ttl         = 0xff,
         protocol    = IPPROTO_ICMP,
         checksum    = 0x0000,
-        src_addr    = "1.1.1.1",
+        src_addr    = "127.0.0.1",
         dst_addr    = TARGET_IP
     )
     ip.header_len = len(ip)
 
-    # Create UDP header.
+    # Create ICMP header.
     icmp = ICMPHeader(
         type        = ICMPMessage.ECHO,
         code        = 0x00,
@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     # Create raw ICMP socket.
     s = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP)
-    # Tell kernel not to include IP header.
+    # Tell kernel not to create IP header.
     s.setsockopt(IPPROTO_IP, IP_HDRINCL, 1)
     # Send packet to destination address.
     s.sendto(pkt, ("127.0.0.1", 0))

@@ -26,7 +26,7 @@ if __name__ == "__main__":
         ttl         = 0xff,
         protocol    = IPPROTO_TCP,
         checksum    = 0x0000,
-        src_addr    = "1.1.1.1",
+        src_addr    = "1.2.3.4",
         dst_addr    = TARGET_IP
     )
     ip.header_len = len(ip)
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     # Create raw TCP socket.
     s = socket(AF_INET, SOCK_RAW, IPPROTO_TCP)
-    # Tell kernel not to include IP header.
+    # Tell kernel not to create IP header.
     s.setsockopt(IPPROTO_IP, IP_HDRINCL, 1)
     # Send packet to destination address.
     s.sendto(pkt, (TARGET_IP, TARGET_PORT))

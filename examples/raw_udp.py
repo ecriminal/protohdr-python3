@@ -7,6 +7,9 @@ from random import randint
 
 
 if __name__ == "__main__":
+    TARGET_IP = "127.0.0.1"
+    TARGET_PORT = 420
+
     if getuid() != 0:
         print("ERROR: Root is required to create raw sockets!", file=stderr)
         exit(1)
@@ -24,14 +27,14 @@ if __name__ == "__main__":
         protocol    = IPPROTO_UDP,
         checksum    = 0x0000,
         src_addr    = "1.2.3.4",
-        dst_addr    = "127.0.0.1"
+        dst_addr    = TARGET_IP
     )
     ip.header_len = len(ip)
 
     # Create UDP header.
     udp = UDPHeader(
-        src_port    = 4000,
-        dst_port    = 6969,
+        src_port    = randint(0x1000, 0xffff),
+        dst_port    = TARGET_PORT,
         header_len  = 0x0000,
         checksum    = 0x0000,
         data        = b'\n0MG 1m 4 UDP p4ck3t !!!'
@@ -47,9 +50,9 @@ if __name__ == "__main__":
 
     # Create raw UDP socket.
     s = socket(AF_INET, SOCK_RAW, IPPROTO_UDP)
-    # Tell kernel not to include IP header.
+    # Tell kernel not to create IP header.
     s.setsockopt(IPPROTO_IP, IP_HDRINCL, 1)
     # Send packet to destination address.
-    s.sendto(pkt, ("127.0.0.1", 6969))
+    s.sendto(pkt, (TARGET_IP, TARGET_PORT))
 
     print("Packet sent")
